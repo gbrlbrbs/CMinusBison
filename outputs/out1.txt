@@ -1,0 +1,145 @@
+
+C- COMPILATION: sample1.cminus
+Syntax tree:
+  Var Declaration: int
+    Id: x
+      Const: 10
+  Function Declaration: int
+    Id: minloc
+    Var Declaration: int
+      Id: a
+    Var Declaration: int
+      Id: low
+    Var Declaration: int
+      Id: high
+    Var Declaration: int
+      Id: i
+    Var Declaration: int
+      Id: x
+    Var Declaration: int
+      Id: k
+    Assign to: (null)
+      Id: k
+      Id: low
+    Assign to: (null)
+      Id: x
+      Id: a
+        Id: low
+    Assign to: (null)
+      Id: i
+      Op: +
+        Id: low
+        Const: 1
+    While
+      Op: <
+        Id: i
+        Id: high
+      If
+        Op: <
+          Id: a
+            Id: i
+          Id: x
+        Assign to: (null)
+          Id: x
+          Id: a
+            Id: i
+        Assign to: (null)
+          Id: k
+          Id: i
+      Assign to: (null)
+        Id: i
+        Op: +
+          Id: i
+          Const: 1
+    Return: 
+      Id: k
+  Function Declaration: void
+    Id: sort
+    Var Declaration: int
+      Id: a
+    Var Declaration: int
+      Id: low
+    Var Declaration: int
+      Id: high
+    Var Declaration: int
+      Id: i
+    Var Declaration: int
+      Id: k
+    Assign to: (null)
+      Id: i
+      Id: low
+    While
+      Op: <
+        Id: i
+        Op: -
+          Id: high
+          Const: 1
+      Var Declaration: int
+        Id: t
+      Assign to: (null)
+        Id: k
+        Call: 
+          Id: minloc
+          Id: a
+          Id: i
+          Id: high
+      Assign to: (null)
+        Id: t
+        Id: a
+          Id: k
+      Assign to: (null)
+        Id: a
+          Id: k
+        Id: a
+          Id: i
+      Assign to: (null)
+        Id: a
+          Id: i
+        Id: t
+      Assign to: (null)
+        Id: i
+        Op: +
+          Id: i
+          Const: 1
+  Function Declaration: void
+    Id: main
+    Var Declaration: int
+      Id: i
+    Assign to: (null)
+      Id: i
+      Const: 0
+    While
+      Op: <
+        Id: i
+        Const: 10
+      Assign to: (null)
+        Id: x
+          Id: i
+        Call: 
+          Id: input
+      Assign to: (null)
+        Id: i
+        Op: +
+          Id: i
+          Const: 1
+    Call: 
+      Id: sort
+      Id: x
+      Const: 0
+      Const: 10
+    Assign to: (null)
+      Id: i
+      Const: 0
+    While
+      Op: <
+        Id: i
+        Const: 10
+      Call: 
+        Id: output
+        Id: x
+          Id: i
+      Assign to: (null)
+        Id: i
+        Op: +
+          Id: i
+          Const: 1

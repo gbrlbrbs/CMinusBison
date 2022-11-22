@@ -10,6 +10,7 @@
 #include "util.h"
 #include "scan.h"
 #include "parse.h"
+#include "symtab.h"
 
 static char* savedName;
 static int savedLineNo;

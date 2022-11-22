@@ -1,0 +1,46 @@
+
+C- COMPILATION: sample0.cminus
+Syntax tree:
+  Function Declaration: int
+    Id: gdc
+    Var Declaration: int
+      Id: u
+    Var Declaration: int
+      Id: v
+    If
+      Op: ==
+        Id: v
+        Const: 0
+      Return: 
+        Id: u
+      Return: 
+        Call: 
+          Id: gdc
+          Id: v
+          Op: -
+            Id: u
+            Op: *
+              Op: /
+                Id: u
+                Id: v
+              Id: v
+  Function Declaration: void
+    Id: main
+    Var Declaration: int
+      Id: x
+    Var Declaration: int
+      Id: y
+    Assign to: (null)
+      Id: x
+      Call: 
+        Id: input
+    Assign to: (null)
+      Id: y
+      Call: 
+        Id: input
+    Call: 
+      Id: output
+      Call: 
+        Id: gdc
+        Id: x
+        Id: y
