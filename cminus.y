@@ -10,7 +10,6 @@
 #include "util.h"
 #include "scan.h"
 #include "parse.h"
-#include "symtab.h"
 
 static char* savedName;
 static int savedLineNo;
@@ -75,9 +74,7 @@ var_decl : type_spec IDENTIFIER SEMICOL
                 $$ = newStmntNode(VarDecl);
                 $$->attr.op = $1;
                 $$->child[0] = newExpNode(Id);
-                $$->child[0]->attr.name = copyString(lastId);
-                insert_simple_var_record(lastId, scopenum);
-                
+                $$->child[0]->attr.name = copyString(lastId);                
             }
             | type_spec IDENTIFIER LBRACK NUMBER
             {
@@ -85,10 +82,8 @@ var_decl : type_spec IDENTIFIER SEMICOL
                 $<tnode>$->attr.op = $1;
                 $<tnode>$->child[0] = newExpNode(Id);
                 $<tnode>$->child[0]->attr.name = copyString(lastId);
-                fprintf(listing, "\nARRAY VAR: %s\tSCOPE: %d", lastId, scopenum);
                 $<tnode>$->child[0]->child[0] = newExpNode(Const);
                 $<tnode>$->child[0]->child[0]->attr.val = atoi(tokenString);
-                insert_array_var_record(lastId, scopenum, atoi(tokenString));
                 
             }
             RBRACK SEMICOL
@@ -110,9 +105,7 @@ fun_decl : type_spec IDENTIFIER
                 $<tnode>$ = newStmntNode(FunDecl);
 			    $<tnode>$->attr.op = $1;
 			    $<tnode>$->child[0] = newExpNode(Id);
-			    $<tnode>$->child[0]->attr.name = copyString(lastId);
-         		insert_function_record(lastId, scopenum);
-			    printf("\nFUNCTION: %s\tRETURN TYPE:%d\n", lastId, $1); 
+			    $<tnode>$->child[0]->attr.name = copyString(lastId); 
                 scopenum++;
 			}
 			LPAR params RPAR cmpnd_stmnt
@@ -159,7 +152,7 @@ param : type_spec IDENTIFIER
                 $<tnode>$ = newStmntNode(VarDecl);
 			    $<tnode>$->attr.op = $1;
 			    $<tnode>$->child[0] = newExpNode(Id);
-			    $<tnode>$->child[0]->attr.name = (char *) copyString(lastId);
+			    $<tnode>$->child[0]->attr.name = copyString(lastId);
 			    //printf("  ARRAY VAR: %s ", lastId);
 			}
 			LBRACK RBRACK
