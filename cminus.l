@@ -17,6 +17,7 @@ letter      [a-zA-Z]
 identifier  {letter}+
 newline     \n
 whitespace  [ \t]+
+comment     [/][*][^*]*[*]+([^*/][^*]*[*]+)*[/]
 
 %%
 "if"            {return IF;}
@@ -55,16 +56,7 @@ whitespace  [ \t]+
 }
 {newline}       {lineno++;}
 {whitespace}    {} /* do nothing - skip whitespace */
-"/*" {
-    char c = ' ';
-    char previous;
-    do {
-        previous = c;
-        c = input();
-        if (c == EOF) break;
-        if (c == '\n') lineno++;
-    } while (c != '/' || previous != '*');
-}
+{comment}       {} /* do nothing */
 . {return ERROR;}
 %%
 

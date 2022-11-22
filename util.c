@@ -154,7 +154,7 @@ void printTree( TreeNode * tree )
           fprintf(listing,"While\n");
           break;
         case Assign:
-          fprintf(listing,"Assign to: %s\n",tree->attr.name);
+          fprintf(listing,"Assign to:\n");
           break;
         case Return:
           fprintf(listing,"Return: \n");
