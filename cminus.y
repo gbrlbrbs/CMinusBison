@@ -10,7 +10,6 @@
 #include "util.h"
 #include "scan.h"
 #include "parse.h"
-#include "symtab.h"
 
 static char* savedName;
 static int savedLineNo;
@@ -75,9 +74,7 @@ var_decl : type_spec IDENTIFIER SEMICOL
                 $$ = newStmntNode(VarDecl);
                 $$->attr.op = $1;
                 $$->child[0] = newExpNode(Id);
-                $$->child[0]->attr.name = copyString(lastId);
-                insert_simple_var_record(lastId, scopenum);
-                
+                $$->child[0]->attr.name = copyString(lastId);                
             }
             | type_spec IDENTIFIER LBRACK NUMBER
             {
@@ -87,7 +84,6 @@ var_decl : type_spec IDENTIFIER SEMICOL
                 $<tnode>$->child[0]->attr.name = copyString(lastId);
                 $<tnode>$->child[0]->child[0] = newExpNode(Const);
                 $<tnode>$->child[0]->child[0]->attr.val = atoi(tokenString);
-                insert_array_var_record(lastId, scopenum, atoi(tokenString));
                 
             }
             RBRACK SEMICOL
