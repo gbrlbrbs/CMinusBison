@@ -85,7 +85,6 @@ var_decl : type_spec IDENTIFIER SEMICOL
                 $<tnode>$->attr.op = $1;
                 $<tnode>$->child[0] = newExpNode(Id);
                 $<tnode>$->child[0]->attr.name = copyString(lastId);
-                fprintf(listing, "\nARRAY VAR: %s\tSCOPE: %d", lastId, scopenum);
                 $<tnode>$->child[0]->child[0] = newExpNode(Const);
                 $<tnode>$->child[0]->child[0]->attr.val = atoi(tokenString);
                 insert_array_var_record(lastId, scopenum, atoi(tokenString));
@@ -112,7 +111,6 @@ fun_decl : type_spec IDENTIFIER
 			    $<tnode>$->child[0] = newExpNode(Id);
 			    $<tnode>$->child[0]->attr.name = copyString(lastId);
          		insert_function_record(lastId, scopenum);
-			    printf("\nFUNCTION: %s\tRETURN TYPE:%d\n", lastId, $1); 
                 scopenum++;
 			}
 			LPAR params RPAR cmpnd_stmnt
@@ -152,7 +150,6 @@ param : type_spec IDENTIFIER
 			    $$->attr.op = $1;
 			    $$->child[0] = newExpNode(Id);
 			    $$->child[0]->attr.name = copyString(lastId);
-			    //printf("  INT VAR: %s ", lastId);
 			}
 			| type_spec IDENTIFIER
 			{ 
@@ -160,7 +157,6 @@ param : type_spec IDENTIFIER
 			    $<tnode>$->attr.op = $1;
 			    $<tnode>$->child[0] = newExpNode(Id);
 			    $<tnode>$->child[0]->attr.name = (char *) copyString(lastId);
-			    //printf("  ARRAY VAR: %s ", lastId);
 			}
 			LBRACK RBRACK
 			{ 
