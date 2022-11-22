@@ -354,8 +354,8 @@ static void yynoreturn yy_fatal_error ( const char* msg  );
 	(yy_hold_char) = *yy_cp; \
 	*yy_cp = '\0'; \
 	(yy_c_buf_p) = yy_cp;
-#define YY_NUM_RULES 32
-#define YY_END_OF_BUFFER 33
+#define YY_NUM_RULES 33
+#define YY_END_OF_BUFFER 34
 /* This struct is not used in this scanner,
    but its presence is necessary. */
 struct yy_trans_info
@@ -365,10 +365,10 @@ struct yy_trans_info
 	};
 static const flex_int16_t yy_accept[63] =
     {   0,
-        0,    0,   33,   31,   29,   28,   31,   20,   21,   16,
+        0,    0,   34,   32,   29,   28,   32,   20,   21,   16,
        14,   19,   15,   17,   26,   18,   12,    7,   10,   27,
        22,   23,   27,   27,   27,   27,   27,   24,   25,   29,
-        9,    0,   26,   13,    8,   11,   27,   27,    1,   27,
+        9,   31,   26,   13,    8,   11,   27,   27,    1,   27,
        27,   27,   27,    0,    0,   27,    5,   27,   27,   27,
         0,   30,    2,   27,    6,   27,    0,    0,   27,    3,
         4,    0
@@ -937,9 +937,14 @@ YY_RULE_SETUP
 case 32:
 YY_RULE_SETUP
 #line 61 "cminus.l"
+{return ERROR;}
+	YY_BREAK
+case 33:
+YY_RULE_SETUP
+#line 62 "cminus.l"
 ECHO;
 	YY_BREAK
-#line 942 "lex.yy.c"
+#line 947 "lex.yy.c"
 case YY_STATE_EOF(INITIAL):
 	yyterminate();
 
@@ -1944,7 +1949,7 @@ void yyfree (void * ptr )
 
 #define YYTABLES_NAME "yytables"
 
-#line 61 "cminus.l"
+#line 62 "cminus.l"
 
 
 TokenType getToken(void) {
@@ -1958,7 +1963,7 @@ TokenType getToken(void) {
     }
     currentToken = yylex();
     strncpy(tokenString, yytext, MAXTOKENLEN);
-    if (trace_scan) {
+    if (TraceScan) {
         fprintf(listing, "\t%d:", lineno);
         printToken(currentToken, tokenString);
     }

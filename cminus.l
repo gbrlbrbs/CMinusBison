@@ -57,6 +57,7 @@ comment     [/][*][^*]*[*]+([^*/][^*]*[*]+)*[/]
 {newline}       {lineno++;}
 {whitespace}    {} /* do nothing - skip whitespace */
 {comment}       {} /* do nothing */
+[/][*]          {return ERROR;}
 . {return ERROR;}
 %%
 
@@ -71,7 +72,7 @@ TokenType getToken(void) {
     }
     currentToken = yylex();
     strncpy(tokenString, yytext, MAXTOKENLEN);
-    if (trace_scan) {
+    if (TraceScan) {
         fprintf(listing, "\t%d:", lineno);
         printToken(currentToken, tokenString);
     }

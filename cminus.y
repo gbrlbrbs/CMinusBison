@@ -124,7 +124,6 @@ params	: param_list
 			| VOID
 			{ 
                 $$ = NULL;
-			    //printf("  PARAM LIST:\tVOID");
 			}
 		;
 param_list : param_list COMMA param
@@ -234,7 +233,7 @@ it_stmnt : WHILE LPAR expr RPAR statement
 			    $$->child[1] = $5;
 			}
 			;
-return_stmnt	: RETURN SEMICOL
+return_stmnt : RETURN SEMICOL
 			  { $$ = newStmntNode(Return); }
 			| RETURN expr SEMICOL
 			{ 

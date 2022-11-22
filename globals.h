@@ -66,11 +66,11 @@ typedef struct TreeNode {
  */
 extern int echo_source;
 
-/* trace_scan = TRUE causes token information to be
+/* TraceScan = TRUE causes token information to be
  * printed to the listing file as each token is
  * recognized by the scanner
  */
-extern int trace_scan;
+extern int TraceScan;
 
 /* trace_parse = TRUE causes the syntax tree to be
  * printed to the listing file in linearized form
